@@ -1,21 +1,14 @@
 # English and Portugues expressions (300 expressions)
 
 import sys, random, time, os
+from functools import partial
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.clock import Clock
-from functools import partial
 from kivy.uix.image import Image
-from kivy.core.window import Window   ##############
-from kivy.uix.dropdown import DropDown
 from kivy.uix.popup import Popup
-from kivy.core.audio import SoundLoader
-from kivy.animation import Animation
-from kivy.properties import NumericProperty
-from kivy.properties import ListProperty
-from kivy.properties import ObjectProperty
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen, ScreenManager
 
 # Platform importation
@@ -26,7 +19,7 @@ if platform == "android":
 	from jnius import cast
 	from jnius import autoclass
 	
-# global count
+# global count 
 number = NumericProperty()
 	
 # Home page class 
@@ -64,8 +57,8 @@ class GameScreen(Screen):
 			
 	# Calling the app class OOP. This method control the music from the app class 		
     def startmusicstop(self,*args):
-        self.ap =XPRESSIONZzz()
-        return self.ap.stopsound()
+        self.app_xp =Xpress()
+        return self.app_xp.stopsound()
 		
 	# Up random selection	
     def up(self, *args):
@@ -153,7 +146,7 @@ class GameScreen(Screen):
             Clock.schedule_once(self.timeup4level1,0)
         self.number +=1
 		
-    def stop (self, *args):
+    def stop(self, *args):
         Clock.unschedule(self.increment_time)
 	
     def score(self, interval):
@@ -167,10 +160,12 @@ class GameScreen(Screen):
         Clock.schedule_interval(self.level_2,self.t)
     def f_l3(self, *args):
         Clock.schedule_interval(self.level_3,self.t)
-		
+	
+    # count number 1	
     def numba(self, *args):
         self.numba1 +=1
-		
+	
+    # Lab 1 and text generation 
     def lab1_on_text(self, *args):
         self.layout201 = self.ids["grid_layout201"]
         self.load2 = Label(text='')# Just to position the widget
@@ -280,21 +275,21 @@ class ToMangeScreen(ScreenManager):
     def __init__(self, *args, **kwargs):
         super(ToMangeScreen, self).__init__(*args, **kwargs)
 
-class XPRESSIONZzz(App):
+class Xpress(App):
     number = NumericProperty()
     sound = SoundLoader.load('gameSound/game_game.ogg')
 	
 	# Play instructions method
     def instructions(self, *args): 
         infotext="""[b]PLAY INSTRUCTIONS!\n
-                 2. XPRESSIONZ e muito simples
+                 2. XPRESS e muito simples
 				 de usar[/b]"""
         
     # High score method
     def highScore(self, args): 
         pass 
 		
-     # about xpressionz
+     # about xpress
     def about(self, *args):
        pass
         
@@ -315,4 +310,4 @@ class XPRESSIONZzz(App):
         pass	
 		
 if __name__ =="__main__":
-    XPRESSIONZzz().run()
+    Xpress().run()
